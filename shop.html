@@ -126,7 +126,7 @@
     /* PRODUCT GRID */
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
       gap: 1.5rem;
     }
     .product-card {
@@ -279,6 +279,7 @@
     @media (max-width: 700px) {
       .shop-header { padding: 1.75rem 1.25rem 1.5rem; }
       .shop-section { padding: 2rem 1.25rem; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
