@@ -12,7 +12,7 @@ function wkMatchesFilters(product) {
 }
 
 function wkProductCardHTML(product) {
-  const badgeClass = product.badge && product.badge.toLowerCase().includes("nouvo") ? "product-badge new" : "product-badge";
+  const badgeClass = product.badge && product.badge.toLowerCase().includes("new") ? "product-badge new" : "product-badge";
   const priceFormatted = product.price.toLocaleString();
   return `
     <div class="product-card">
