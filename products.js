@@ -130,7 +130,7 @@ const WK_CLUB_PRODUCTS = [
     league: "Serie A",
     kit: "Home",
     price: 2500,
-    img: "https://store.acmilan.com/cdn/shop/files/784120-A82_01.jpg?v=1779429459&width=900",
+    img: "https://i.pinimg.com/736x/fa/90/77/fa90777fe02a2377f82bdd4c83b420ba.jpg",
     badge: "New",
     video: ""
   },
