@@ -2,12 +2,6 @@
 <html lang="ht">
 <head>
   <meta charset="UTF-8" />
-  <meta property="og:title" content="WaldyKits — Mayo Foutbòl Ayiti" />
-  <meta property="og:description" content="Mayo orijinal Premier League, La Liga, Champions League ak Ekip Nasyonal Ayiti. Kòmande fasil sou WhatsApp." />
-  <meta property="og:image" content="https://i.pinimg.com/1200x/7f/f8/f4/7ff8f451c0ec402dfaa93325932cbb47.jpg" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://waldykits.netlify.app/" />
-  <meta name="twitter:card" content="summary_large_image" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WaldyKits — Mayo Foutbòl Ayiti</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
@@ -94,105 +88,77 @@
       transition: all 0.3s;
     }
 
-    /* ── HERO — AWESOME, LOVABLE ── */
+    /* ── HERO (new: light, clean, jersey showcase) ── */
+    :root {
+      /* 👉 PUT YOUR CUSTOM BACKGROUND IMAGE HERE, e.g. url("hero-bg.jpg") or url("https://...") */
+      --hero-bg-image:url("WaldyKitsHero.jpg");;
+      /* 👉 Optional veil over your image so text stays readable, e.g. rgba(255,255,255,0.6) */
+      --hero-overlay: rgba(255,255,255,0);
+    }
+    .hero-bg {
+      position: relative;
+      background-color: #ffffff;
+      background-image: var(--hero-bg-image);
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .hero-bg::before { content: ''; position: absolute; inset: 0; background: var(--hero-overlay); pointer-events: none; }
     .hero {
-      min-height: 92vh;
-      display: flex; align-items: center;
-      background: linear-gradient(145deg, #0b1a2e 0%, #1a2f3f 40%, #1f3a4a 100%);
-      padding: 6rem 2rem;
-      position: relative; overflow: hidden;
+      position: relative;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 2rem;
+      max-width: 1150px; margin: 0 auto; padding: 4rem 2rem 5rem; min-height: 78vh;
     }
     .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(255,215,0,0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 40%),
-        repeating-linear-gradient(45deg, transparent, transparent 80px, rgba(255,255,255,0.02) 80px, rgba(255,255,255,0.02) 81px);
-      pointer-events: none;
+      content: 'WK'; position: absolute; right: -2%; top: 50%; transform: translateY(-50%);
+      font-family: var(--font-display); font-weight: 800; font-size: clamp(14rem, 30vw, 28rem); line-height: 1;
+      color: transparent; -webkit-text-stroke: 1.5px var(--gray-200); z-index: 0; pointer-events: none;
     }
-    .hero::after {
-      content: '⚽';
-      position: absolute;
-      font-size: 32rem;
-      right: -8%;
-      bottom: -20%;
-      opacity: 0.04;
-      transform: rotate(12deg);
-      pointer-events: none;
+    .hero-text, .showcase { position: relative; z-index: 1; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 1.25rem; }
+    .eyebrow i { width: 28px; height: 2px; background: var(--accent); }
+    .hero h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(3.2rem, 8vw, 6.2rem); line-height: 0.95; letter-spacing: -0.01em; margin-bottom: 1.25rem; color: var(--black); }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero .lead { color: var(--gray-600); font-size: 1.05rem; line-height: 1.7; max-width: 430px; margin-bottom: 1.5rem; }
+
+    .hero-search { position: relative; width: 100%; max-width: 420px; margin-bottom: 1.5rem; }
+    .hero-search input {
+      width: 100%; padding: 0.9rem 1rem 0.9rem 2.8rem; border-radius: 100px;
+      border: 1px solid var(--gray-200); background: #fff; color: var(--black);
+      font-size: 0.9rem; font-family: var(--font-body); outline: none; transition: border-color 0.2s;
     }
-    .hero-inner {
-      max-width: 1100px; margin: 0 auto; width: 100%;
-      position: relative; z-index: 1;
-    }
-    .hero-badge {
+    .hero-search input:focus { border-color: var(--accent); }
+    .hero-search svg { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--gray-400); }
+
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn-primary, .btn-secondary {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.8);
-      font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 0.35rem 0.9rem; border-radius: 100px;
-      margin-bottom: 1.5rem;
+      padding: 0.9rem 1.8rem; border-radius: 8px; font-weight: 700; font-size: 0.92rem;
+      text-decoration: none; transition: transform 0.2s;
     }
-    .hero-badge img {
-      height: 22px;
-      width: auto;
-      border-radius: 4px;
-    }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(3.8rem, 8vw, 7.5rem);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 0.92;
-      letter-spacing: -0.01em;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 4px 40px rgba(0,0,0,0.3);
-    }
-    .hero h1 em {
-      font-style: normal;
-      background: linear-gradient(135deg, #f9d976, #f39c12);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero p {
-      color: rgba(255,255,255,0.7);
-      font-size: 1.2rem; max-width: 480px;
-      margin-bottom: 2.5rem; line-height: 1.8;
-      font-weight: 300;
-    }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
-      background: linear-gradient(135deg, #f9d976, #f39c12);
-      color: var(--black);
-      padding: 0.875rem 2.2rem; border-radius: 60px;
-      font-weight: 700; font-size: 0.95rem;
-      text-decoration: none; transition: all 0.25s;
-      box-shadow: 0 8px 30px rgba(243, 156, 18, 0.3);
-    }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(243, 156, 18, 0.45); }
-    .btn-secondary {
-      background: rgba(255,255,255,0.06);
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.25);
-      padding: 0.875rem 2.2rem; border-radius: 60px;
-      font-weight: 600; font-size: 0.95rem;
-      text-decoration: none; transition: all 0.25s;
-      backdrop-filter: blur(4px);
-    }
-    .btn-secondary:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.5); }
-    .hero-stats {
-      display: flex; gap: 3.5rem; margin-top: 5rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 2rem;
-    }
-    .stat-num {
-      font-family: var(--font-display);
-      font-size: 2.5rem; font-weight: 800; color: var(--white);
-    }
-    .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; margin-top: 2px; }
+    .btn-primary:hover, .btn-secondary:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--black); color: #fff; }
+    .btn-secondary { background: #25D366; color: #fff; }
+    .btn-secondary svg { width: 18px; height: 18px; }
+
+    .showcase { justify-self: center; width: min(340px, 100%); }
+    .showcase-card { position: relative; aspect-ratio: 4/5; background: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.5); border-radius: 20px; overflow: hidden; backdrop-filter: blur(6px); }    .showcase-card::after { content: ''; position: absolute; width: 70%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #dbe6ff, transparent 70%); left: 15%; top: 15%; }
+    .slide { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transform: scale(0.96); transition: opacity 0.8s, transform 0.8s; z-index: 1; }
+    .slide.on { opacity: 1; transform: scale(1); }
+    .slide img { width: 88%; height: 78%; object-fit: contain; mix-blend-mode: multiply; }    .slide b { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.05em; margin-top: 0.5rem; }
+    .dots { display: flex; justify-content: center; gap: 0.4rem; margin-top: 1rem; }
+    .dots span { width: 22px; height: 3px; border-radius: 3px; background: var(--gray-200); transition: background 0.3s; }
+    .dots span.on { background: var(--black); }
+
+    /* ── INTRO ANIMATION (plays on every page load) ── */
+    .intro { position: fixed; inset: 0; z-index: 1000; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; transition: transform 0.9s cubic-bezier(.77,0,.18,1); }
+    .intro.lift { transform: translateY(-100%); }
+    .intro img { width: min(220px, 50vw); opacity: 0; transform: scale(0.85); animation: wkLogoIn 0.9s 0.2s forwards; }
+    .intro-bar { width: 140px; height: 2px; background: var(--gray-200); overflow: hidden; border-radius: 2px; }
+    .intro-bar span { display: block; height: 100%; width: 0; background: var(--black); animation: wkLoad 1.5s 0.3s forwards; }
+    @keyframes wkLogoIn { to { opacity: 1; transform: scale(1); } }
+    @keyframes wkLoad { to { width: 100%; } }
+    @media (prefers-reduced-motion: reduce) { .intro { display: none; } .slide { transition: none; } }
 
     /* ── LEAGUES TICKER ── */
     .leagues {
@@ -269,12 +235,14 @@
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
     }
-    .product-img img { width: 84%; height: 100%; object-fit: cover; }
+    .product-img img { width: 100%; height: 100%; object-fit: contain; object-position: center top; padding: 0px; background: var(--white); }
+
+    /* Edit ONLY these two rules to adjust the first two jerseys (Man United & Real Madrid) */
+    .img-edit-1 { object-fit: contain; object-position: center top; padding: 0px; }
+    .img-edit-2 { object-fit: contain; object-position: center top; padding: 0px; }
     .product-badge {
       position: absolute; top: 12px; left: 12px;
       background: var(--black); color: var(--white);
-      .img-edit-1 { object-fit: contain; object-position: center top; padding: 0px; }
-      .img-edit-2 { object-fit: contain; object-position: center top; padding: 0px; }
       font-size: 0.65rem; font-weight: 700;
       letter-spacing: 0.08em; text-transform: uppercase;
       padding: 0.25rem 0.65rem; border-radius: 4px;
@@ -414,13 +382,20 @@
     @media (max-width: 700px) {
       .nav-links { display: none; }
       .hamburger { display: block; }
-      .hero { min-height: 80vh; padding: 3rem 1.25rem; }
+      .hero { grid-template-columns: 1fr; padding: 2.5rem 1.25rem 3.5rem; min-height: auto; }
+      .showcase { order: -1; width: min(260px, 70%); }
       section { padding: 3.5rem 1.25rem; }
-      .preview-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.75rem; }
+      .products-grid, .preview-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.75rem; }
     }
   </style>
 </head>
 <body>
+
+<!-- INTRO ANIMATION -->
+<div class="intro" id="intro">
+  <img src="logo.jpg" alt="WaldyKits" />
+  <div class="intro-bar"><span></span></div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -445,38 +420,37 @@
   </button>
 </nav>
 
-<!-- HERO — AWESOME, LOVABLE, WITH LOGO BADGE -->
+<!-- HERO -->
+<div class="hero-bg">
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">
-      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 36'%3E%3Crect width='60' height='36' fill='%230a0a0a' rx='6'/%3E%3Ctext x='6' y='26' font-family='Barlow Condensed, sans-serif' font-size='22' font-weight='800' fill='%23ffffff'%3EWK%3C/text%3E%3C/svg%3E" alt="WaldyKits" style="height:20px;" />
-      <span>🇭🇹 Pi bèl boutik Mayo foutbòl Ayiti</span>
+  <div class="hero-text">
+    <div class="eyebrow"><i></i>Mayo Foutbòl · Ayiti</div>
+    <h1>METE MAYO<br><em>EKIP OU.</em></h1>
+    <p class="lead">Mayo orijinal Premier League, La Liga, Champions League ak Ekip Nasyonal Ayiti. Kòmande fasil sou WhatsApp.</p>
+    <div class="hero-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="heroSearch" placeholder="Chèche yon ekip... (Real Madrid, Ayiti...)" />
     </div>
-    <h1>METE MAYO<br><em>EKIP OU.</em><br>SE LI KI FYÈTE W. <br></h1>
-    <p>Mayo foutbòl otantik tout gwo ekip nan pi gwo lig mond lan, livrezon dirèk isit la an Ayiti.</p>
     <div class="hero-actions">
       <a href="shop.html" class="btn-primary">Gade Mayo yo</a>
       <a href="https://wa.me/50940303686?text=Bonjou!%20Mwen%20vle%20kòmande%20yon%20mayo%20nan%20WaldyKits." class="btn-secondary" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:18px;height:18px;margin-right:4px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Kòmande sou WhatsApp
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
       </a>
     </div>
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">50+</div>
-        <div class="stat-label">Mayo an stock</div>
-      </div>
-      <div>
-        <div class="stat-num">5</div>
-        <div class="stat-label">Gwo lig</div>
-      </div>
-      <div>
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Kliyan kontan</div>
-      </div>
+  </div>
+
+  <div class="showcase">
+    <div class="showcase-card">
+      <div class="slide on"><img src="https://i.pinimg.com/736x/d8/77/71/d8777111fd7efd52a8e951c1b3978331.jpg" alt="Mayo Ayiti" /><b>AYITI</b></div>
+      <div class="slide"><img src="https://i.pinimg.com/736x/95/bf/c1/95bfc1d1d5e96527f643bc608f2c050b.jpg" alt="Mayo FC Barcelona" /><b>FC BARCELONA</b></div>
+      <div class="slide"><img src="https://i.pinimg.com/736x/06/6b/d5/066bd5f7963a786279b39ef3dd6661fd.jpg" alt="Mayo Real Madrid" /><b>REAL MADRID</b></div>
+      <div class="slide"><img src="https://i.pinimg.com/1200x/bc/3d/b3/bc3db336977271a0ff5cffd3144dcc71.jpg" alt="Mayo Brezil" /><b>BREZIL</b></div>
     </div>
+    <div class="dots"><span class="on"></span><span></span><span></span><span></span></div>
   </div>
 </section>
+</div>
 
 <!-- LEAGUES TICKER -->
 <div class="leagues" aria-label="Lig ki disponib">
@@ -526,12 +500,12 @@
 
       <a href="shop.html" class="product-card">
         <div class="product-img">
-          <img src="https://i.pinimg.com/1200x/7f/f8/f4/7ff8f451c0ec402dfaa93325932cbb47.jpg" alt="Mayo Manchester United"  class="img-edit-1" />
-          <span class="product-badge new">New</span>
+          <img src="https://i.pinimg.com/1200x/7f/f8/f4/7ff8f451c0ec402dfaa93325932cbb47.jpg" alt="Mayo Manchester United" class="img-edit-1" />
+          <span class="product-badge new">Nouvo</span>
         </div>
         <div class="product-info">
           <div class="product-league">Premier League</div>
-          <div class="product-name">Manchester United — Home 2026/27</div>
+          <div class="product-name">Manchester United — Home 2025/26</div>
           <div class="product-footer">
             <div class="product-price">2,500<small>Goud (HTG)</small></div>
           </div>
@@ -541,11 +515,11 @@
       <a href="shop.html" class="product-card">
         <div class="product-img">
           <img src="https://i.pinimg.com/1200x/96/15/f8/9615f87dbb747f124ff3000ace68607c.jpg" alt="Mayo Real Madrid"  class="img-edit-2" />
-          <span class="product-badge new">New</span>
+          <span class="product-badge new">Nouvo</span>
         </div>
         <div class="product-info">
           <div class="product-league">La Liga</div>
-          <div class="product-name">Real Madrid — Home 2026/27</div>
+          <div class="product-name">Real Madrid — Home 2025/26</div>
           <div class="product-footer">
             <div class="product-price">2,500<small>Goud (HTG)</small></div>
           </div>
@@ -555,11 +529,11 @@
       <a href="shop.html" class="product-card">
         <div class="product-img">
           <img src="https://i.pinimg.com/736x/d8/77/71/d8777111fd7efd52a8e951c1b3978331.jpg" alt="Mayo Ekip Nasyonal Ayiti" />
-          <span class="product-badge">🇭🇹 Fyète</span>
+          <span class="product-badge">🇭🇹 Fyète Lakay</span>
         </div>
         <div class="product-info">
           <div class="product-league">Ekip Nasyonal Ayiti</div>
-          <div class="product-name">Les Grenadiers — Haiti Home</div>
+          <div class="product-name">Les Grenadiers — Home</div>
           <div class="product-footer">
             <div class="product-price">2,500<small>Goud (HTG)</small></div>
           </div>
@@ -569,13 +543,13 @@
       <a href="shop.html" class="product-card">
         <div class="product-img">
           <img src="https://i.pinimg.com/1200x/bc/3d/b3/bc3db336977271a0ff5cffd3144dcc71.jpg" alt="Mayo Brezil" />
-          <span class="product-badge new">New</span>
+          <span class="product-badge new">Nouvo</span>
         </div>
         <div class="product-info">
           <div class="product-league">Entènasyonal</div>
-          <div class="product-name">Brazil — Home</div>
+          <div class="product-name">Brezil — Home</div>
           <div class="product-footer">
-            <div class="product-price">2,500<small>Goud (HTG)</small></div>
+            <div class="product-price">2,800<small>Goud (HTG)</small></div>
           </div>
         </div>
       </a>
@@ -591,8 +565,8 @@
 <section id="why" class="why">
   <div class="section-inner">
     <div class="section-eyebrow">Poukisa WaldyKits</div>
-    <div class="section-title">Pi bon mayo<br>nan vil la.</div>
-    <p class="section-sub">Nou pote pi gwo mayo nan lemonn dirèkteman nan Ayiti, mayo de kalite, ou ka fè konfyans, ak pri ki rezonab.</p>
+    <div class="section-title">Pi bon mayo<br>nan vil ou.</div>
+    <p class="section-sub">Nou pote pi gwo mayo nan lemonn dirèkteman nan Ayiti — kalite ou ka fè konfyans, ak pri ki rezonab.</p>
 
     <div class="why-grid">
       <div class="why-card">
@@ -608,12 +582,12 @@
       <div class="why-card">
         <div class="why-icon">💬</div>
         <h3>Kòmande Fasil sou WhatsApp</h3>
-        <p>Pa gen koplikasyon. Voye yon mesaj sou WhatsApp, n ap jere rès la.</p>
+        <p>Pa gen koplikasyon. Voye yon mesaj sou WhatsApp, nou okipe rès la.</p>
       </div>
       <div class="why-card">
         <div class="why-icon">🏆</div>
-        <h3>Mayo Tout Gwo Lig yo</h3>
-        <p>Premier League, La Liga, Gwo seleksyon ak mayo Ekip Nasyonal Ayiti.</p>
+        <h3>Tout Gwo Lig yo</h3>
+        <p>Premier League, La Liga, Lendentènasyonal ak mayo Ekip Nasyonal Ayiti.</p>
       </div>
     </div>
   </div>
@@ -622,11 +596,11 @@
 <!-- CTA CONTACT -->
 <section id="contact" class="cta-band">
   <h2>Pare Pou Kòmande?</h2>
-  <p>Voye yon mesaj oswa rele nou dirèkteman pou konfime mayo ou vle a ak livrezon.</p>
+  <p>Voye nou yon mesaj oswa rele nou dirèkteman pou konfime mayo ou vle a ak livrezon.</p>
   <div class="cta-buttons">
     <a href="https://wa.me/50940303686?text=Bonjou!%20Mwen%20vle%20kòmande%20yon%20mayo%20nan%20WaldyKits." class="whatsapp-btn" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Ekri sou WhatsApp
+      Chat sou WhatsApp
     </a>
     <a href="tel:+50940303686" class="call-btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -638,7 +612,7 @@
 <!-- FOOTER -->
 <footer>
   <img src="logo.jpg" alt="WaldyKits" class="footer-logo" />
-  <p><strong>WaldyKits</strong>  Mayo Foutbòl &nbsp;|&nbsp; Ayiti &nbsp;|&nbsp; © 2025 Tout dwa rezève.</p>
+  <p><strong>WaldyKits</strong> — Mayo Foutbòl &nbsp;|&nbsp; Ayiti &nbsp;|&nbsp; © 2025 Tout dwa rezève.</p>
 </footer>
 
 <!-- FLOATING WHATSAPP -->
@@ -667,6 +641,24 @@
 
 <script src="cart.js"></script>
 <script>
+  // Intro animation: plays on EVERY page load / reload
+  (function () {
+    var intro = document.getElementById('intro');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { intro.classList.add('lift'); }, 2000);
+    setTimeout(function () { intro.style.display = 'none'; document.body.style.overflow = ''; }, 2900);
+  })();
+
+  // Rotating jersey showcase
+  (function () {
+    var slides = document.querySelectorAll('.slide'), dots = document.querySelectorAll('.dots span'), i = 0;
+    setInterval(function () {
+      slides[i].classList.remove('on'); dots[i].classList.remove('on');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('on'); dots[i].classList.add('on');
+    }, 2800);
+  })();
+
   // Hero search redirects to shop with search query
   document.getElementById('heroSearch').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
